@@ -1,0 +1,73 @@
+<%- include('../partials/header') %>
+    <%- include('../partials/sidebar') %>
+
+        <div class="main-panel">
+            <div class="content-wrapper">
+
+                <div class="page-header">
+                    <h3 class="page-title">Update About Us</h3>
+
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item">
+                                <a href="/dashboard">Dashboard</a>
+                            </li>
+                            <li class="breadcrumb-item active">
+                                Update About Us
+                            </li>
+                        </ol>
+                    </nav>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-10 mx-auto">
+                        <div class="card">
+                            <div class="card-body">
+
+                                <h4 class="card-title text-center">
+                                    Update About Us
+                                </h4>
+
+                                <% if(success_msg){ %>
+                                    <div class="alert alert-success">
+                                        <%= success_msg %>
+                                    </div>
+                                    <% } %>
+
+                                        <% if(error_msg){ %>
+                                            <div class="alert alert-danger">
+                                                <%= error_msg %>
+                                            </div>
+                                            <% } %>
+
+                                                <form action="/admin/about-us" method="POST">
+
+                                                    <div class="form-group mb-3">
+                                                        <label>Page Title</label>
+
+                                                        <input type="text" name="pageTitle" class="form-control"
+                                                            value="<%= page ? page.pageTitle : '' %>" required>
+                                                    </div>
+
+                                                    <div class="form-group mb-3">
+                                                        <label>Page Description</label>
+
+                                                        <textarea name="pageDescription" rows="8" class="form-control"
+                                                            required><%= page ? page.pageDescription : '' %></textarea>
+                                                    </div>
+
+                                                    <button type="submit" class="btn btn-primary">
+                                                        Update
+                                                    </button>
+
+                                                </form>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <%- include('../partials/footer') %>
+        </div>

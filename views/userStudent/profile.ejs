@@ -1,0 +1,191 @@
+<%- include('../layouts/studentHeader') %>
+
+    <div class="container-fluid page-body-wrapper">
+
+        <%- include('../layouts/studentSidebar') %>
+
+            <div class="main-panel">
+
+                <div class="content-wrapper">
+
+                    <div class="page-header">
+
+                        <h3 class="page-title">
+                            My Profile
+                        </h3>
+
+                        <nav aria-label="breadcrumb">
+                            <ol class="breadcrumb">
+                                <li class="breadcrumb-item">
+                                    <a href="/student/dashboard">Dashboard</a>
+                                </li>
+                                <li class="breadcrumb-item active">
+                                    Profile
+                                </li>
+                            </ol>
+                        </nav>
+
+                    </div>
+
+                    <div class="row">
+
+                        <!-- Left Card -->
+
+                        <div class="col-md-4 grid-margin">
+
+                            <div class="card">
+
+                                <div class="card-body text-center">
+
+                                    <% if(student.image){ %>
+
+                                        <img src="/uploads/students/<%= student.image %>" class="rounded-circle mb-3" width="180"
+                                            height="180">
+
+                                        <% }else{ %>
+
+                                            <img src="/images/faces/face1.png" class="rounded-circle mb-3"
+                                                width="180" height="180">
+
+                                            <% } %>
+
+                                                <h3>
+                                                    <%= student.name %>
+                                                </h3>
+
+                                                <p class="text-muted">
+                                                    Student
+                                                </p>
+
+                                                <% if(student.isVerified){ %>
+
+                                                    <span class="badge badge-success">
+                                                        Verified
+                                                    </span>
+
+                                                    <% }else{ %>
+
+                                                        <span class="badge badge-danger">
+                                                            Not Verified
+                                                        </span>
+
+                                                        <% } %>
+
+                                                            <hr>
+
+                                                            <a href="/student/profile/edit"
+                                                                class="btn btn-primary btn-block">
+
+                                                                Edit Profile
+
+                                                            </a>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                        <!-- Right Card -->
+
+                        <div class="col-md-8 grid-margin">
+
+                            <div class="card">
+
+                                <div class="card-header bg-primary text-white">
+
+                                    Student Details
+
+                                </div>
+
+                                <div class="card-body">
+
+                                    <table class="table table-bordered">
+
+                                        <tr>
+                                            <th width="30%">Name</th>
+                                            <td>
+                                                <%= student.name %>
+                                            </td>
+                                        </tr>
+
+                                        <tr>
+                                            <th>Email</th>
+                                            <td>
+                                                <%= student.email %>
+                                            </td>
+                                        </tr>
+
+                                        <tr>
+                                            <th>Phone</th>
+                                            <td>
+                                                <%= student.phone %>
+                                            </td>
+                                        </tr>
+
+                                        <tr>
+                                            <th>Gender</th>
+                                            <td>
+                                                <%= student.gender %>
+                                            </td>
+                                        </tr>
+
+                                        <tr>
+                                            <th>Age</th>
+                                            <td>
+                                                <%= student.age %>
+                                            </td>
+                                        </tr>
+
+                                        <tr>
+                                            <th>Email Verification</th>
+
+                                            <td>
+
+                                                <% if(student.isVerified){ %>
+
+                                                    <span class="badge badge-success">
+                                                        Verified
+                                                    </span>
+
+                                                    <% }else{ %>
+
+                                                        <span class="badge badge-danger">
+                                                            Pending
+                                                        </span>
+
+                                                        <% } %>
+
+                                            </td>
+
+                                        </tr>
+
+                                        <tr>
+
+                                            <th>Account Created</th>
+
+                                            <td>
+
+                                                <%= new Date(student.createdAt).toLocaleDateString() %>
+
+                                            </td>
+
+                                        </tr>
+
+                                    </table>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <%- include('../layouts/footer') %>
+
+            </div>
+
+    </div>

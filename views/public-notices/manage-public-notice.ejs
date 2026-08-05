@@ -1,0 +1,167 @@
+<%- include('../layouts/header') %>
+
+    <div class="container-fluid page-body-wrapper">
+
+        <%- include('../layouts/sidebar') %>
+
+            <div class="main-panel">
+
+                <div class="content-wrapper">
+
+                    <div class="page-header">
+
+                        <h3 class="page-title">
+                            Manage Public Notice
+                        </h3>
+
+                        <nav aria-label="breadcrumb">
+
+                            <ol class="breadcrumb">
+
+                                <li class="breadcrumb-item">
+                                    <a href="/dashboard">
+                                        Dashboard
+                                    </a>
+                                </li>
+
+                                <li class="breadcrumb-item active">
+                                    Manage Public Notice
+                                </li>
+
+                            </ol>
+
+                        </nav>
+
+                    </div>
+
+                    <div class="row">
+
+                        <div class="col-md-12 grid-margin stretch-card">
+
+                            <div class="card">
+
+                                <div class="card-body">
+
+                                    <div class="d-sm-flex align-items-center mb-4">
+
+                                        <h4 class="card-title mb-sm-0">
+                                            Manage Public Notice
+                                        </h4>
+
+                                        <a href="#" class="text-dark ml-auto mb-3 mb-sm-0">
+                                            View All Public Notices
+                                        </a>
+
+                                    </div>
+
+                                    <div class="table-responsive border rounded p-1">
+
+                                        <table class="table">
+
+                                            <thead>
+
+                                                <tr>
+                                                    <th>S.No</th>
+                                                    <th>Notice Title</th>
+                                                    <th>Notice Date</th>
+                                                    <th>Action</th>
+                                                </tr>
+
+                                            </thead>
+
+                                            <tbody>
+
+                                                <% publicNotices.forEach((notice,index)=>{ %>
+
+                                                    <tr>
+
+                                                        <td>
+                                                            <%= (currentPage - 1) * limit + index + 1 %>
+                                                        </td>
+
+                                                        <td>
+                                                            <%= notice.nottitle %>
+                                                        </td>
+
+                                                        <td>
+                                                            <%= new Date(notice.createdAt).toLocaleDateString() %>
+                                                        </td>
+
+                                                        <td>
+
+                                                            <a href="/public-notices/edit/<%= notice._id %>"
+                                                                class="btn btn-primary btn-sm">
+                                                                <i class="fa-solid fa-pen"></i>
+                                                            </a>
+
+                                                            <a href="/public-notices/delete/<%= notice._id %>"
+                                                                onclick="return confirm('Do you really want to Delete ?')"
+                                                                class="btn btn-danger btn-sm">
+                                                                <i class="fa-solid fa-trash"></i>
+                                                            </a>
+
+                                                        </td>
+
+                                                    </tr>
+
+                                                    <% }) %>
+
+                                            </tbody>
+
+                                        </table>
+
+                                    </div>
+
+                                    <div class="mt-3">
+
+                                        <ul class="pagination">
+
+                                            <li class="page-item">
+                                                <a class="page-link" href="?page=1">
+                                                    First
+                                                </a>
+                                            </li>
+
+                                            <li class="page-item <%= currentPage <= 1 ? 'disabled' : '' %>">
+
+                                                <a class="page-link" href="?page=<%= currentPage - 1 %>">
+                                                    Prev
+                                                </a>
+
+                                            </li>
+
+                                            <li class="page-item <%= currentPage >= totalPages ? 'disabled' : '' %>">
+
+                                                <a class="page-link" href="?page=<%= currentPage + 1 %>">
+                                                    Next
+                                                </a>
+
+                                            </li>
+
+                                            <li class="page-item">
+
+                                                <a class="page-link" href="?page=<%= totalPages %>">
+                                                    Last
+                                                </a>
+
+                                            </li>
+
+                                        </ul>
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <%- include('../layouts/footer') %>
+
+            </div>
+
+    </div>

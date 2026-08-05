@@ -1,0 +1,151 @@
+<%- include('../layouts/header') %>
+
+    <div class="container-fluid page-body-wrapper">
+
+        <%- include('../layouts/sidebar') %>
+
+            <div class="main-panel">
+                <div class="content-wrapper">
+
+                    <div class="page-header">
+                        <h3 class="page-title">Student Details</h3>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-body">
+
+                            <div class="row">
+
+                                <div class="col-md-3 text-center">
+
+                                    <% if(student.image){ %>
+                                        <img src="/uploads/students/<%= student.image %>" class="img-thumbnail"
+                                            style="width:180px;height:180px;object-fit:cover;">
+                                        <% } else { %>
+                                            <img src="/images/default.png" class="img-thumbnail"
+                                                style="width:180px;height:180px;">
+                                            <% } %>
+
+                                </div>
+
+                                <div class="col-md-9">
+
+                                    <table class="table table-bordered">
+
+                                        <tr>
+                                            <th>Student Name</th>
+                                            <td>
+                                                <%= student.name %>
+                                            </td>
+                                        </tr>
+
+                                        <tr>
+                                            <th>Student ID</th>
+                                            <td>
+                                                <%= student._id %>
+                                            </td>
+                                        </tr>
+
+                                        <tr>
+                                            <th>Email</th>
+                                            <td>
+                                                <%= student.email %>
+                                            </td>
+                                        </tr>
+
+                                        <tr>
+                                            <th>Phone</th>
+                                            <td>
+                                                <%= student.phone %>
+                                            </td>
+                                        </tr>
+
+                                        <tr>
+                                            <th>Age</th>
+                                            <td>
+                                                <%= student.age %>
+                                            </td>
+                                        </tr>
+
+                                        <tr>
+                                            <th>Gender</th>
+                                            <td>
+                                                <%= student.gender %>
+                                            </td>
+                                        </tr>
+
+                                        <tr>
+                                            <th>Date of Birth</th>
+                                            <td>
+                                                <%= student.dob ? new Date(student.dob).toLocaleDateString() : "N/A" %>
+                                            </td>
+                                        </tr>
+
+                                        <tr>
+                                            <th>Course</th>
+                                            <td>
+                                                <%= student.course || (student.courseId ? student.courseId.name : "N/A"
+                                                    ) %>
+                                            </td>
+                                        </tr>
+
+                                        <tr>
+                                            <th>Father Name</th>
+                                            <td>
+                                                <%= student.fatherName || "N/A" %>
+                                            </td>
+                                        </tr>
+
+                                        <tr>
+                                            <th>Mother Name</th>
+                                            <td>
+                                                <%= student.motherName || "N/A" %>
+                                            </td>
+                                        </tr>
+
+
+
+                                        <tr>
+                                            <th>Address</th>
+                                            <td>
+                                                <%= student.address || "N/A" %>
+                                            </td>
+                                        </tr>
+
+                                        <tr>
+                                            <th>Username</th>
+                                            <td>
+                                                <%= student.username || "N/A" %>
+                                            </td>
+                                        </tr>
+
+                                        <tr>
+                                            <th>Created At</th>
+                                            <td>
+                                                <%= new Date(student.createdAt).toLocaleString() %>
+                                            </td>
+                                        </tr>
+
+                                    </table>
+
+                                    <a href="/students" class="btn btn-secondary">
+                                        Back
+                                    </a>
+
+                                    <a href="/students/edit/<%= student._id %>" class="btn btn-primary">
+                                        Edit
+                                    </a>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+    </div>
+
+    <%- include('../layouts/footer') %>

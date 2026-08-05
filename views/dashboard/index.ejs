@@ -1,0 +1,525 @@
+<%- include('../layouts/header') %>
+
+    <div class="container-fluid page-body-wrapper">
+
+        <%- include('../layouts/sidebar') %>
+
+            <div class="main-panel">
+
+                <div class="content-wrapper">
+
+                    <div class="row">
+
+                        <div class="col-md-12 grid-margin">
+
+                            <div class="card shadow border-0" style="border-radius:20px;">
+
+                                <div class="card-body">
+
+                                    <!-- Report Summary Header -->
+
+                                    <div class="report-header-box">
+
+                                        <div class="d-flex justify-content-between align-items-center">
+
+                                            <div>
+
+                                                <h2 class="mb-1 text-white font-weight-bold">
+                                                    <i class="mdi mdi-chart-line"></i>
+                                                    Report Summary
+                                                </h2>
+
+                                                <small class="text-light">
+                                                    Student Management System Dashboard
+                                                </small>
+
+                                            </div>
+
+                                            <div>
+
+                                                <span class="update-badge">
+                                                    <i class="mdi mdi-update"></i>
+                                                    Updated Report
+                                                </span>
+
+                                            </div>
+
+                                        </div>
+
+                                    </div>
+
+                                    <div class="row mt-4">
+
+                                        <!-- Total Courses -->
+
+                                        <div class="col-md-6 mb-4">
+
+                                            <div class="report-inner-card color-1">
+
+                                                <div class="inner-card-text text-white">
+
+                                                    <span class="report-title">
+                                                        Total Courses
+                                                    </span>
+
+                                                    <h2>
+                                                        <%= totalCourses %>
+                                                    </h2>
+
+                                                    <a href="/courses" class="text-white">
+                                                        View Courses
+                                                    </a>
+
+                                                </div>
+
+                                                <div class="inner-card-icon">
+                                                    <i class="mdi mdi-book-open-page-variant"></i>
+                                                </div>
+
+                                            </div>
+
+                                        </div>
+
+                                        <!-- Total Students -->
+
+                                        <div class="col-md-6 mb-4">
+
+                                            <div class="report-inner-card color-2">
+
+                                                <div class="inner-card-text text-white">
+
+                                                    <span class="report-title">
+                                                        Total Students
+                                                    </span>
+
+                                                    <h2>
+                                                        <%= totalStudents %>
+                                                    </h2>
+
+                                                    <a href="/students" class="text-white">
+                                                        View Students
+                                                    </a>
+
+                                                </div>
+
+                                                <div class="inner-card-icon">
+                                                    <i class="mdi mdi-account-group"></i>
+                                                </div>
+
+                                            </div>
+
+                                        </div>
+
+                                        <!-- Total Notices -->
+
+                                        <div class="col-md-6">
+
+                                            <div class="report-inner-card color-3">
+
+                                                <div class="inner-card-text text-white">
+
+                                                    <span class="report-title">
+                                                        Total Notices
+                                                    </span>
+
+                                                    <h2>
+                                                        <%= totalNotices %>
+                                                    </h2>
+
+                                                    <a href="/notices" class="text-white">
+                                                        View Notices
+                                                    </a>
+
+                                                </div>
+
+                                                <div class="inner-card-icon">
+                                                    <i class="mdi mdi-bell-ring"></i>
+                                                </div>
+
+                                            </div>
+
+                                        </div>
+
+                                        <!-- Total Public Notices -->
+
+                                        <div class="col-md-6">
+
+                                            <div class="report-inner-card color-4">
+
+                                                <div class="inner-card-text text-white">
+
+                                                    <span class="report-title">
+                                                        Public Notices
+                                                    </span>
+
+                                                    <h2>
+                                                        <%= totalPublicNotices %>
+                                                    </h2>
+
+                                                    <a href="/public-notices" class="text-white">
+                                                        View Public Notices
+                                                    </a>
+
+                                                </div>
+
+                                                <div class="inner-card-icon">
+                                                    <i class="mdi mdi-earth"></i>
+                                                </div>
+
+                                            </div>
+
+                                        </div>
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <style>
+                        .report-header-box {
+                            background: linear-gradient(135deg, #4e54c8, #8f94fb);
+                            border-radius: 18px;
+                            padding: 22px 30px;
+                            box-shadow: 0 8px 20px rgba(0, 0, 0, .15);
+                        }
+
+                        .report-header-box h2 {
+                            margin: 0;
+                            font-weight: 700;
+                        }
+
+                        .report-header-box small {
+                            font-size: 14px;
+                        }
+
+                        .update-badge {
+                            background: #fff;
+                            color: #4e54c8;
+                            padding: 10px 20px;
+                            border-radius: 30px;
+                            font-size: 14px;
+                            font-weight: 600;
+                            box-shadow: 0 4px 10px rgba(0, 0, 0, .15);
+                        }
+
+                        .update-badge i {
+                            margin-right: 6px;
+                        }
+
+                        .report-inner-card {
+                            border-radius: 18px;
+                            padding: 25px;
+                            display: flex;
+                            justify-content: space-between;
+                            align-items: center;
+                            transition: .3s;
+                            box-shadow: 0 8px 20px rgba(0, 0, 0, .12);
+                        }
+
+                        .report-inner-card:hover {
+                            transform: translateY(-6px);
+                            box-shadow: 0 15px 30px rgba(0, 0, 0, .18);
+                        }
+
+                        .color-1 {
+                            background: linear-gradient(135deg, #36D1DC, #5B86E5);
+                        }
+
+                        .color-2 {
+                            background: linear-gradient(135deg, #11998e, #38ef7d);
+                        }
+
+                        .color-3 {
+                            background: linear-gradient(135deg, #f7971e, #ffd200);
+                        }
+
+                        .color-4 {
+                            background: linear-gradient(135deg, #fc4a1a, #f7b733);
+                        }
+
+                        .report-title {
+                            display: block;
+                            font-size: 16px;
+                            font-weight: 600;
+                        }
+
+                        .report-inner-card h2 {
+                            font-size: 34px;
+                            font-weight: 700;
+                            margin: 10px 0;
+                        }
+
+                        .report-inner-card a {
+                            color: #fff;
+                            font-weight: 600;
+                            text-decoration: none;
+                        }
+
+                        .report-inner-card a:hover {
+                            text-decoration: underline;
+                        }
+
+                        .inner-card-icon {
+                            font-size: 55px;
+                            opacity: .25;
+                            color: #fff;
+                        }
+                    </style>
+
+                    <!-- ================= Student List ================= -->
+
+                    <div class="row mt-4">
+                        <div class="col-md-12">
+
+                            <div class="card shadow-lg border-0" style="border-radius:20px;">
+
+                                <div class="card-header text-white"
+                                    style="background:linear-gradient(90deg,#2193b0,#6dd5ed); border-radius:20px 20px 0 0;">
+
+                                    <div class="d-flex justify-content-between align-items-center">
+
+                                        <h3 class="mb-0 font-weight-bold">
+                                            <i class="mdi mdi-school"></i>
+                                            Student List
+                                        </h3>
+
+                                        <span class="badge badge-light p-2" style="font-size:15px;">
+                                            Total Students : <%= totalStudents %>
+                                        </span>
+
+                                    </div>
+
+                                </div>
+
+                                <div class="card-body p-4">
+
+                                    <div class="table-responsive">
+
+                                        <table class="table table-hover">
+
+                                            <thead>
+
+                                                <tr style="background:#2193b0;color:white;">
+
+                                                    <th>SL No.</th>
+                                                    <th>Student ID</th>
+                                                    <th>Student Name</th>
+                                                    <th>Email</th>
+                                                    <th>Phone</th>
+                                                    <th>Course</th>
+                                                    <th>Gender</th>
+
+                                                </tr>
+
+                                            </thead>
+
+                                            <tbody>
+
+                                                <% if(students && students.length>0){ %>
+
+                                                    <% students.forEach((student,index)=>{ %>
+
+                                                        <tr>
+
+                                                            <td>
+                                                                <span class="badge badge-primary p-2">
+                                                                    <%= index+1 %>
+                                                                </span>
+                                                            </td>
+
+                                                            <td>
+
+                                                                <span
+                                                                    style="background:#2193b0;color:white;padding:7px 15px;border-radius:25px;font-weight:bold;">
+
+                                                                    <%= student.studentId %>
+
+                                                                </span>
+
+                                                            </td>
+
+                                                            <td class="font-weight-bold text-dark">
+
+                                                                <%= student.name %>
+
+                                                            </td>
+
+                                                            <td>
+
+                                                                <%= student.email %>
+
+                                                            </td>
+
+                                                            <td>
+
+                                                                <%= student.phone %>
+
+                                                            </td>
+
+                                                            <td>
+
+                                                                <span
+                                                                    style="background:#ffc107;color:black;padding:6px 12px;border-radius:20px;">
+
+                                                                    <%= student.course %>
+
+                                                                </span>
+
+                                                            </td>
+
+                                                            <td>
+
+                                                                <% if(student.gender==="Male" ){ %>
+
+                                                                    <span
+                                                                        style="background:#007bff;color:white;padding:6px 15px;border-radius:20px;">
+                                                                        Male
+                                                                    </span>
+
+                                                                    <% } else if(student.gender==="Female" ){ %>
+
+                                                                        <span
+                                                                            style="background:#e83e8c;color:white;padding:6px 15px;border-radius:20px;">
+                                                                            Female
+                                                                        </span>
+
+                                                                        <% } else { %>
+
+                                                                            <span
+                                                                                style="background:#6c757d;color:white;padding:6px 15px;border-radius:20px;">
+                                                                                Other
+                                                                            </span>
+
+                                                                            <% } %>
+
+                                                            </td>
+
+                                                        </tr>
+
+                                                        <% }) %>
+
+                                                            <% } else { %>
+
+                                                                <tr>
+
+                                                                    <td colspan="7" class="text-center text-danger">
+
+                                                                        No Students Found
+
+                                                                    </td>
+
+                                                                </tr>
+
+                                                                <% } %>
+
+                                            </tbody>
+
+                                        </table>
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <style>
+                        .table {
+                            border-collapse: separate;
+                            border-spacing: 0 10px;
+                        }
+
+                        .table thead th {
+                            border: none;
+                            text-align: center;
+                            padding: 15px;
+                            font-size: 15px;
+                        }
+
+                        .table tbody tr {
+                            background: #ffffff;
+                            box-shadow: 0 2px 10px rgba(0, 0, 0, .08);
+                            transition: .3s;
+                        }
+
+                        .table tbody tr:hover {
+                            transform: translateY(-3px);
+                            box-shadow: 0 8px 20px rgba(33, 147, 176, .25);
+                        }
+
+                        .table td {
+                            vertical-align: middle;
+                            text-align: center;
+                            border-top: none;
+                            border-bottom: none;
+                            padding: 15px;
+                        }
+
+                        .card {
+                            overflow: hidden;
+                        }
+
+                        .badge {
+                            font-size: 13px;
+                        }
+                    </style>
+
+                </div>
+
+
+            </div>
+
+            <script>
+
+                google.charts.load(
+                    'current',
+                    {
+                        packages: ['corechart']
+                    }
+                );
+
+                google.charts.setOnLoadCallback(
+                    drawChart
+                );
+
+                function drawChart() {
+
+                    // var data =
+                    //     google.visualization.arrayToDataTable([
+
+                    //         ['Courses', <%= totalCourses || 0 %>],
+                    //         ['Students', <%= totalStudents || 0 %>],
+
+                    //     ]);
+
+                    var options = {
+
+                        title:
+                            'Student Management Report'
+
+                    };
+
+                    var chart =
+                        new google.visualization.PieChart(
+                            document.getElementById(
+                                'piechart'
+                            )
+                        );
+
+                    chart.draw(
+                        data,
+                        options
+                    );
+
+                }
+
+            </script>
+
+            <%- include('../layouts/footer') %>

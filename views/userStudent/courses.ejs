@@ -1,0 +1,124 @@
+<%- include('../layouts/studentHeader') %>
+
+    <div class="container-fluid page-body-wrapper">
+
+
+        <%- include('../layouts/studentSidebar') %>
+            <div class="main-panel">
+
+                <div class="content-wrapper">
+
+                    <div class="page-header">
+
+                        <h3 class="page-title">
+                            My Course
+                        </h3>
+
+                        <nav aria-label="breadcrumb">
+
+                            <ol class="breadcrumb">
+
+                                <li class="breadcrumb-item">
+                                    <a href="/student/dashboard">
+                                        Dashboard
+                                    </a>
+                                </li>
+
+                                <li class="breadcrumb-item active">
+                                    My Course
+                                </li>
+
+                            </ol>
+
+                        </nav>
+
+                    </div>
+
+                    <div class="card">
+
+                        <div class="card-header bg-primary text-white">
+
+                            Course Information
+
+                        </div>
+
+                        <div class="card-body">
+
+                            <% if(student){ %>
+
+                                <table class="table table-bordered">
+
+                                    <tr>
+                                        <th width="30%">Student Name</th>
+                                        <td>
+                                            <%= student.name %>
+                                        </td>
+                                    </tr>
+
+                                    <tr>
+                                        <th>Email</th>
+                                        <td>
+                                            <%= student.email %>
+                                        </td>
+                                    </tr>
+
+                                    <tr>
+                                        <th>Phone</th>
+                                        <td>
+                                            <%= student.phone %>
+                                        </td>
+                                    </tr>
+
+                                    <tr>
+                                        <th>Course</th>
+                                        <td>
+                                            <%= student.course ? course.name : "Not Assigned" %>
+                                        </td>
+                                    </tr>
+
+                                    <tr>
+                                        <th>Duration</th>
+                                        <td>
+                                            <%= student.course ? course.duration : "N/A" %>
+                                        </td>
+                                    </tr>
+
+                                    <tr>
+                                        <th>Description</th>
+                                        <td>
+                                            <%= student.course ? course.description : "N/A" %>
+                                        </td>
+                                    </tr>
+
+                                    
+                                    <tr>
+                                        <th>Course Fees</th>
+                                        <td>
+                                            <%= student.course ? course.fees : "N/A" %>
+                                        </td>
+                                    </tr>
+
+
+                                </table>
+
+                                <% } else { %>
+
+                                    <div class="alert alert-warning">
+
+                                        No Course Assigned.
+
+                                    </div>
+
+                                    <% } %>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <%- include('../layouts/footer') %>
+
+            </div>
+
+    </div>

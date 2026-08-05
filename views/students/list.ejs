@@ -1,0 +1,266 @@
+
+<%- include('../layouts/header') %>
+
+<div class="container-fluid page-body-wrapper">
+
+    <%- include('../layouts/sidebar') %>
+
+    <div class="main-panel">
+
+        <div class="content-wrapper">
+
+            <div class="page-header">
+
+                <h3 class="page-title">
+                    Manage Students
+                </h3>
+
+                <nav aria-label="breadcrumb">
+
+                    <ol class="breadcrumb">
+
+                        <li class="breadcrumb-item">
+                            <a href="/dashboard">
+                                Dashboard
+                            </a>
+                        </li>
+
+                        <li class="breadcrumb-item active">
+                            Manage Students
+                        </li>
+
+                    </ol>
+
+                </nav>
+
+            </div>
+
+            <div class="row">
+
+                <div class="col-md-12 grid-margin stretch-card">
+
+                    <div class="card">
+
+                        <div class="card-body">
+
+                            <div class="d-sm-flex align-items-center mb-4">
+
+                                <h4 class="card-title mb-sm-0">
+                                    Manage Students
+                                </h4>
+
+                                <a
+                                    href="/students/add"
+                                    class="btn btn-primary ml-auto"
+                                >
+                                    Add Student
+                                </a>
+
+                            </div>
+
+
+                            <div class="table-responsive border rounded p-1">
+
+                                <table class="table">
+
+                                    <thead>
+
+                                        <tr>
+
+                                            <th>S.No</th>
+                                            <th>Student ID</th>
+                                            <th>Class</th>
+                                            <th>Name</th>
+                                            <th>Email</th>
+                                            <th>Photo</th>
+                                            <th>Created</th>
+                                            <th>Action</th>
+
+                                        </tr>
+
+                                    </thead>
+
+                                    <tbody>
+
+                                        <% if(typeof students !== 'undefined' && students.length > 0){ %>
+
+                                            <% students.forEach((student,index)=>{ %>
+
+                                            <tr>
+
+                                                <td>
+                                                    <%= index + 1 %>
+                                                </td>
+
+                                                <td>
+                                                    <%= student._id %>
+                                                </td>
+
+                                                <td>
+                                                    <%= student.course || "N/A" %>
+                                                </td>
+
+                                                <td>
+                                                    <%= student.name %>
+                                                </td>
+
+                                                <td>
+                                                    <%= student.email %>
+                                                </td>
+
+                                                <td>
+
+                                                    <% if(student.image){ %>
+
+                                                    <img
+                                                        src="/uploads/students/<%= student.image %>"
+                                                        width="50"
+                                                        height="50"
+                                                        style="border-radius:50%;object-fit:cover"
+                                                    >
+
+                                                    <% } %>
+
+                                                </td>
+
+                                                <td>
+                                                    <%= new Date(student.createdAt).toLocaleDateString() %>
+                                                </td>
+
+                                                <td>
+
+                                                    <a
+                                                        href="/students/view/<%= student._id  %>"
+                                                        class="btn btn-info btn-sm"
+                                                    >
+                                                        <i class="fa-solid fa-eye"></i>
+                                                    </a>
+
+                                                    <a
+                                                        href="/students/edit/<%= student._id  %>"
+                                                        class="btn btn-primary btn-sm"
+                                                    >
+                                                        <i class="fa-solid fa-pen"></i>
+                                                    </a>
+
+                                                    <a
+                                                        href="/students/delete/<%= student._id %>"
+                                                        onclick="return confirm('Are you sure?')"
+                                                        class="btn btn-danger btn-sm"
+                                                    >
+                                                        <i class="fa-solid fa-trash"></i>
+                                                    </a>
+
+                                                </td>
+
+                                            </tr>
+
+                                            <% }) %>
+
+                                        <% } else { %>
+
+                                            <tr>
+
+                                                <td colspan="8" class="text-center">
+
+                                                    No Students Found
+
+                                                </td>
+
+                                            </tr>
+
+                                        <% } %>
+
+                                    </tbody>
+
+                                </table>
+
+                            </div>
+
+                            <!-- Pagination -->
+
+                            <div class="mt-4">
+
+                                <ul class="pagination">
+
+                                    <li class="page-item">
+
+                                        <a
+                                            class="page-link"
+                                            href="?page=1"
+                                        >
+                                            First
+                                        </a>
+
+                                    </li>
+
+                                    <% if(typeof currentPage !== 'undefined' && currentPage > 1){ %>
+
+                                    <li class="page-item">
+
+                                        <a
+                                            class="page-link"
+                                            href="?page=<%= currentPage-1 %>"
+                                        >
+                                            Prev
+                                        </a>
+
+                                    </li>
+
+                                    <% } %>
+
+                                    <li class="page-item active">
+
+                                        <span class="page-link">
+
+                                            <%= currentPage %>
+
+                                        </span>
+
+                                    </li>
+
+                                    <% if(currentPage < totalPages){ %>
+
+                                    <li class="page-item">
+
+                                        <a
+                                            class="page-link"
+                                            href="?page=<%= currentPage+1 %>"
+                                        >
+                                            Next
+                                        </a>
+
+                                    </li>
+
+                                    <% } %>
+
+                                    <li class="page-item">
+
+                                        <a
+                                            class="page-link"
+                                            href="?page=<%= totalPages %>"
+                                        >
+                                            Last
+                                        </a>
+
+                                    </li>
+
+                                </ul>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<%- include('../layouts/footer') %>

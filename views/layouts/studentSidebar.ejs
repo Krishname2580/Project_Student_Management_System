@@ -1,0 +1,133 @@
+<nav class="sidebar sidebar-offcanvas" id="sidebar">
+
+    <ul class="nav">
+
+        <!-- Profile -->
+        <li class="nav-item nav-profile">
+
+            <a href="/student/dashboard" class="nav-link">
+
+                <div class="nav-profile-image">
+
+                    <% if(user && user.image){ %>
+
+                        <img src="/uploads/students/<%= user.image %>" alt="profile" >
+
+                        <% } else { %>
+
+                            <img src="/images/faces/face1.png" alt="profile" style="width:70px; height:70px; border-radius:50%; object-fit:cover; margin-right: 15px;" >
+
+                            <% } %>
+
+                </div>
+
+                <div class="nav-profile-text">
+
+                    <span class="font-weight-bold mb-2">
+                        <%= user.name %>
+                    </span>
+
+                    <div class="text-secondary">
+                        Student
+                    </div>
+
+                </div>
+
+            </a>
+
+        </li>
+
+        <!-- Dashboard -->
+        <li class="nav-item">
+
+            <a class="nav-link" href="/student/dashboard">
+
+                <span class="menu-title">Dashboard</span>
+
+                <i class="mdi mdi-view-dashboard menu-icon"></i>
+
+            </a>
+
+        </li>
+
+        <!-- My Profile -->
+        <li class="nav-item">
+
+            <a class="nav-link" href="/student/profile">
+
+                <span class="menu-title">My Profile</span>
+
+                <i class="mdi mdi-account menu-icon"></i>
+
+            </a>
+
+        </li>
+
+        <!-- Edit Profile -->
+        <li class="nav-item">
+
+            <a class="nav-link" href="/student/profile/edit">
+
+                <span class="menu-title">Edit Profile</span>
+
+                <i class="mdi mdi-account-edit menu-icon"></i>
+
+            </a>
+
+        </li>
+
+        <!-- Course -->
+        <li class="nav-item">
+
+            <a class="nav-link" href="/student/course">
+
+                <span class="menu-title">My Course</span>
+
+                <i class="mdi mdi-book-open-page-variant menu-icon"></i>
+
+            </a>
+
+        </li>
+
+        <!-- Notices -->
+        <li class="nav-item">
+
+            <a class="nav-link" href="/student/notices">
+
+                <span class="menu-title">Notices</span>
+
+                <i class="mdi mdi-bullhorn menu-icon"></i>
+
+            </a>
+
+        </li>
+
+        <!-- Change Password -->
+        <li class="nav-item">
+
+            <a class="nav-link" href="/student/change-password">
+
+                <span class="menu-title">Change Password</span>
+
+                <i class="mdi mdi-lock-reset menu-icon"></i>
+
+            </a>
+
+        </li>
+
+        <!-- Logout -->
+        <li class="nav-item">
+
+            <a class="nav-link" href="/logout">
+
+                <span class="menu-title">Logout</span>
+
+                <i class="mdi mdi-logout menu-icon"></i>
+
+            </a>
+
+        </li>
+
+    </ul>
+
+</nav>

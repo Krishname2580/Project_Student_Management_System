@@ -1,0 +1,69 @@
+<%- include('../partials/header') %>
+    <%- include('../partials/sidebar') %>
+
+        <div class="main-panel">
+            <div class="content-wrapper">
+
+                <div class="page-header">
+                    <h3 class="page-title">Update Contact Us</h3>
+                </div>
+
+                <% if(success_msg){ %>
+                    <div class="alert alert-success">
+                        <%= success_msg %>
+                    </div>
+                    <% } %>
+
+                        <% if(error_msg){ %>
+                            <div class="alert alert-danger">
+                                <%= error_msg %>
+                            </div>
+                            <% } %>
+
+                                <div class="card">
+                                    <div class="card-body">
+
+                                        <h4 class="card-title text-center">
+                                            Update Contact Us
+                                        </h4>
+
+                                        <form action="/contact-us" method="POST">
+
+                                            <div class="form-group">
+                                                <label>Page Title</label>
+                                                <input type="text" name="pagetitle" class="form-control"
+                                                    value="<%= page?.pageTitle || '' %>" required>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label>Page Description</label>
+                                                <textarea name="pagedes" rows="5" class="form-control"
+                                                    required><%= page?.pageDescription || '' %></textarea>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label>Email</label>
+                                                <input type="email" name="email" class="form-control"
+                                                    value="<%= page?.email || '' %>" required>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label>Mobile Number</label>
+                                                <input type="text" name="mobnum" class="form-control" maxlength="10"
+                                                    pattern="[0-9]{10}" value="<%= page?.mobileNumber || '' %>"
+                                                    required>
+                                            </div>
+
+                                            <button type="submit" class="btn btn-primary">
+                                                Update
+                                            </button>
+
+                                        </form>
+
+                                    </div>
+                                </div>
+
+            </div>
+        </div>
+
+        <%- include('../partials/footer') %>

@@ -1,0 +1,117 @@
+<%- include('../layouts/studentHeader') %>
+
+    <div class="container-fluid page-body-wrapper">
+
+        <%- include('../layouts/studentSidebar') %>
+
+            <div class="main-panel">
+
+                <div class="content-wrapper">
+
+                    <div class="page-header">
+
+                        <h3 class="page-title">
+                            Notices
+                        </h3>
+
+                        <nav aria-label="breadcrumb">
+
+                            <ol class="breadcrumb">
+
+                                <li class="breadcrumb-item">
+                                    <a href="/student/dashboard">
+                                        Dashboard
+                                    </a>
+                                </li>
+
+                                <li class="breadcrumb-item active">
+                                    Notices
+                                </li>
+
+                            </ol>
+
+                        </nav>
+
+                    </div>
+
+                    <div class="card">
+
+                        <div class="card-header bg-primary text-white">
+
+                            Latest Notices
+
+                        </div>
+
+                        <div class="card-body">
+
+                            <% if(notices.length> 0){ %>
+
+                                <table class="table table-bordered table-hover">
+
+                                    <thead>
+
+                                        <tr>
+
+                                            <th>#</th>
+
+                                            <th>Title</th>
+
+                                            <th>Description</th>
+
+                                            <th>Date</th>
+
+                                        </tr>
+
+                                    </thead>
+
+                                    <tbody>
+
+                                        <% notices.forEach((notice,index)=>{ %>
+
+                                            <tr>
+
+                                                <td>
+                                                    <%= index+1 %>
+                                                </td>
+
+                                                <td>
+                                                    <%= notice.nottitle  %>
+                                                </td>
+
+                                                <td>
+                                                    <%= notice.notmsg %>
+                                                </td>
+
+                                                <td>
+                                                    <%= new Date(notice.createdAt).toLocaleDateString() %>
+                                                </td>
+
+                                            </tr>
+
+                                            <% }) %>
+
+                                    </tbody>
+
+                                </table>
+
+                                <% } else { %>
+
+                                    <div class="alert alert-warning">
+
+                                        No Notices Available.
+
+                                    </div>
+
+                                    <% } %>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <%- include('../layouts/footer') %>
+
+            </div>
+
+    </div>

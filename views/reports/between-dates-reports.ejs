@@ -1,0 +1,91 @@
+<%- include('../layouts/header') %>
+
+    <div class="container-fluid page-body-wrapper">
+
+        <%- include('../layouts/sidebar') %>
+
+            <div class="main-panel">
+
+                <div class="content-wrapper">
+
+                    <div class="page-header">
+
+                        <h3 class="page-title">
+                            Between Dates Reports
+                        </h3>
+
+                        <nav aria-label="breadcrumb">
+
+                            <ol class="breadcrumb">
+
+                                <li class="breadcrumb-item">
+                                    <a href="/dashboard">
+                                        Dashboard
+                                    </a>
+                                </li>
+
+                                <li class="breadcrumb-item active">
+                                    Between Dates Reports
+                                </li>
+
+                            </ol>
+
+                        </nav>
+
+                    </div>
+
+                    <div class="row">
+
+                        <div class="col-12 grid-margin stretch-card">
+
+                            <div class="card">
+
+                                <div class="card-body">
+
+                                    <h4 class="card-title text-center">
+                                        Between Dates Reports
+                                    </h4>
+
+                                    <form class="forms-sample" method="GET" action="/reports/between-dates">
+
+                                        <div class="form-group">
+
+                                            <label>
+                                                From Date:
+                                            </label>
+
+                                            <input type="date" class="form-control" name="fromdate" required>
+
+                                        </div>
+
+                                        <div class="form-group">
+
+                                            <label>
+                                                To Date:
+                                            </label>
+
+                                            <input type="date" class="form-control" name="todate" required>
+
+                                        </div>
+
+                                        <button type="submit" class="btn btn-primary mr-2">
+                                            Submit
+                                        </button>
+
+                                    </form>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <%- include('../layouts/footer') %>
+
+            </div>
+
+    </div>
