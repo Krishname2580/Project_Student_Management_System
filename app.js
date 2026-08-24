@@ -59,7 +59,7 @@ app.use('/api', dashboardRoutes)
 const studentRoutes = require('./app/routes/studentRoutes')
 app.use('/api', studentRoutes)
 
-const ejsRoutes = require('./app/routes/ejsRoutes');
+const ejsRoutes = require('./app/routes/EjsRoutes');
 app.use('/', ejsRoutes);
 
 const userStudentRoutes = require('./app/routes/userStudentRoutes');
