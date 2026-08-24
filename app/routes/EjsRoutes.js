@@ -9,7 +9,9 @@ const authEjsController = require("../controllers/authEjsController");
 const noticeEjsController = require("../controllers/noticeEjsController")
 const isAdmin = require("../middleware/isAdmin");
 
-
+router.get("/", (req, res) => {
+    res.redirect("/login");
+});
 // Auth
 // Register
 router.get("/register", authEjsController.registerPage);

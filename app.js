@@ -76,10 +76,10 @@ io.on("connection", (socket) => {
 
 });
 
-const Port = 3007
+const Port = process.env.PORT || 3007;
 
 server.listen(Port, () => {
-    console.log(`Server running on http://localhost:${Port}`);
+    console.log(`Server running on port ${Port}`);
 });
 
 
