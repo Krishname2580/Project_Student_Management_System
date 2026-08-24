@@ -14,14 +14,14 @@ const isAdmin = require("../middleware/isAdmin");
 // Register
 router.get("/register", authEjsController.registerPage);
 router.post("/register", authEjsController.register);
-// router.get("/verify-email/:token", authEjsController.verifyEmail);
+router.get("/verify-email/:token", authEjsController.verifyEmail);
 
-router.post("/send-otp", authEjsController.sendOTP);
+// router.post("/send-otp", authEjsController.sendOTP);
 
-router.post("/verify-otp", authEjsController.verifyOTP);
+// router.post("/verify-otp", authEjsController.verifyOTP);
 // Login
 router.get("/login", authEjsController.loginPage);
-// router.post("/login", authEjsController.login);
+router.post("/login", authEjsController.login);
 
 // Dashboard
 router.get("/dashboard", dashboardEjsController.dashboard);

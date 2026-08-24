@@ -2,7 +2,6 @@
 <html lang="en">
 
 <head>
-
     <title>Login</title>
 
     <link rel="stylesheet" href="/vendors/simple-line-icons/css/simple-line-icons.css">
@@ -16,13 +15,11 @@
             background-size: cover;
         }
     </style>
-
 </head>
 
 <body>
 
     <div class="container-scroller">
-
         <div class="container-fluid page-body-wrapper full-page-wrapper">
 
             <div class="content-wrapper d-flex align-items-center auth">
@@ -37,69 +34,46 @@
                                 <img src="/images/logo.png">
                             </div>
 
-                            <h4>Hello! let's get started</h4>
+                            <h4>Hello! Let's get started</h4>
+
                             <h6 class="font-weight-light">
                                 Sign in to continue.
                             </h6>
+
+                            <!-- Success Message -->
                             <% if (success_msg && success_msg.length> 0) { %>
                                 <div class="alert alert-success">
                                     <%= success_msg[0] %>
                                 </div>
                                 <% } %>
 
+                                    <!-- Error Message -->
                                     <% if (error_msg && error_msg.length> 0) { %>
                                         <div class="alert alert-danger">
                                             <%= error_msg[0] %>
                                         </div>
                                         <% } %>
 
-                                            <!-- <form action="/login" method="POST" class="pt-3">
+                                            <!-- Login Form -->
+                                            <form action="/login" method="POST" class="pt-3">
 
                                                 <div class="form-group">
-
                                                     <input type="email" name="email"
                                                         class="form-control form-control-lg" placeholder="Enter Email"
                                                         required>
+                                                </div>
 
-                                                </div> -->
-                                            <form action="/send-otp" method="POST">
+                                                <div class="form-group">
+                                                    <input type="password" name="password"
+                                                        class="form-control form-control-lg"
+                                                        placeholder="Enter Password" required>
+                                                </div>
 
-                                                <input type="email" name="email" placeholder="Enter Email" required>
-
-                                                <button type="submit">
-                                                    Send OTP
-                                                </button>
-
-                                            </form>
-
-                                            <!-- <div class="form-group">
-
-                                                <input type="password" name="password"
-                                                    class="form-control form-control-lg" placeholder="Enter Password"
-                                                    required>
-
-                                            </div> -->
-                                            <form action="/verify-otp" method="POST">
-
-                                                <input type="hidden" name="email"
-                                                    value="<%= typeof email !== 'undefined' ? email : '' %>">
-
-                                                <input type="text" name="otp" placeholder="Enter OTP" maxlength="6"
-                                                    required>
-
-                                                <button type="submit">
-                                                    Verify OTP
-                                                </button>
-
-                                            </form>
-
-                                            <div class="mt-3">
-
-                                                <button type="submit" class="btn btn-success btn-block">
-                                                    Login
-                                                </button>
-
-                                            </div>
+                                                <div class="mt-3">
+                                                    <button type="submit" class="btn btn-success btn-block">
+                                                        Login
+                                                    </button>
+                                                </div>
 
                                             </form>
 
@@ -112,7 +86,6 @@
             </div>
 
         </div>
-
     </div>
 
     <script src="/vendors/js/vendor.bundle.base.js"></script>

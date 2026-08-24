@@ -169,195 +169,61 @@ class AuthEjsController {
     }
 
 
-    // async login(req, res) {
-
-    //     try {
-
-    //         const { email, password } = req.body;
-
-    //         if (!email || !password) {
-
-    //             req.flash("error_msg", "Email and Password required");
-    //             return res.redirect("/login");
-
-    //         }
-
-
-
-    //         const user = await User.findOne({ email });
-
-    //         if (!user) {
-
-    //             req.flash("error_msg", "Invalid Email");
-    //             return res.redirect("/login");
-
-    //         }
-
-    //         if (!user.isVerified) {
-
-    //             req.flash("error_msg", "Please verify your email before login.");
-
-    //             return res.redirect("/login");
-
-    //         }
-
-
-
-    //         const isMatch = await bcrypt.compare(
-    //             password,
-    //             user.password
-    //         );
-
-    //         if (!isMatch) {
-
-    //             req.flash("error_msg", "Invalid Password");
-    //             return res.redirect("/login");
-
-    //         }
-
-    //         req.session.user = user;
-
-    //         if (user.role === "admin") {
-    //             return res.redirect("/dashboard");
-    //         }
-
-    //         if (user.role === "student") {
-    //             return res.redirect("/student/dashboard");
-    //         }
-
-    //     } catch (error) {
-
-    //         req.flash("error_msg", error.message);
-    //         return res.redirect("/login");
-
-    //     }
-
-    // }
-
-
-
-    // Logout
-
-    async sendOTP(req, res) {
-
-    try {
-
-        console.log("Step 1");
-
-        const { email } = req.body;
-
-        console.log("Email:", email);
-
-        const user = await User.findOne({ email });
-
-        console.log("Step 2");
-        console.log(user);
-
-        if (!user) {
-            req.flash("error_msg", "User not found");
-            return res.redirect("/login");
-        }
-
-        console.log("Step 3");
-
-        const otp = Math.floor(100000 + Math.random() * 900000).toString();
-
-        console.log("OTP:", otp);
-
-        await OTP.findOneAndUpdate(
-            { email },
-            {
-                email,
-                otp,
-                expiresAt: new Date(Date.now() + 5 * 60 * 1000)
-            },
-            {
-                upsert: true,
-                new: true
-            }
-        );
-
-        console.log("Step 4");
-
-        const transporter = nodemailer.createTransport({
-            host: process.env.EMAIL_HOST,
-            port: Number(process.env.EMAIL_PORT),
-            secure: false,
-            auth: {
-                user: process.env.EMAIL_USER,
-                pass: process.env.EMAIL_PASS
-            }
-        });
-
-        console.log("Step 5");
-
-        await transporter.sendMail({
-            from: process.env.EMAIL_FROM,
-            to: email,
-            subject: "Login OTP",
-            html: `<h2>Your OTP is ${otp}</h2>`
-        });
-
-        console.log("Step 6 - Email Sent");
-
-        return res.render("auth/verifyOtp", {
-            email
-        });
-
-    } catch (error) {
-
-        console.log("ERROR:", error);
-
-        return res.send(error.message);
-
-    }
-
-}
-    async verifyOTP(req, res) {
+    async login(req, res) {
 
         try {
 
-            const { email, otp } = req.body;
+            const { email, password } = req.body;
 
-            const otpData = await OTP.findOne({ email });
+            if (!email || !password) {
 
-            if (!otpData) {
-
-                req.flash("error_msg", "OTP not found");
+                req.flash("error_msg", "Email and Password required");
                 return res.redirect("/login");
 
             }
 
-            if (otpData.expiresAt < Date.now()) {
 
-                req.flash("error_msg", "OTP Expired");
-                return res.redirect("/login");
-
-            }
-
-            if (otpData.otp !== otp) {
-
-                return res.render("auth/verifyOtp", {
-                    email,
-                    error_msg: "Invalid OTP",
-                    success_msg: ""
-                });
-
-            }
 
             const user = await User.findOne({ email });
 
-            req.session.user = user;
+            if (!user) {
 
-            await OTP.deleteOne({ email });
-
-            if (user.role === "admin") {
-
-                return res.redirect("/dashboard");
+                req.flash("error_msg", "Invalid Email");
+                return res.redirect("/login");
 
             }
 
-            return res.redirect("/student/dashboard");
+            if (!user.isVerified) {
+
+                req.flash("error_msg", "Please verify your email before login.");
+
+                return res.redirect("/login");
+
+            }
+
+
+
+            const isMatch = await bcrypt.compare(
+                password,
+                user.password
+            );
+
+            if (!isMatch) {
+
+                req.flash("error_msg", "Invalid Password");
+                return res.redirect("/login");
+
+            }
+
+            req.session.user = user;
+
+            if (user.role === "admin") {
+                return res.redirect("/dashboard");
+            }
+
+            if (user.role === "student") {
+                return res.redirect("/student/dashboard");
+            }
 
         } catch (error) {
 
@@ -367,6 +233,139 @@ class AuthEjsController {
         }
 
     }
+
+
+
+
+//     async sendOTP(req, res) {
+
+//     try {
+
+//         console.log("Step 1");
+
+//         const { email } = req.body;
+
+//         console.log("Email:", email);
+
+//         const user = await User.findOne({ email });
+
+//         console.log("Step 2");
+//         console.log(user);
+
+//         if (!user) {
+//             req.flash("error_msg", "User not found");
+//             return res.redirect("/login");
+//         }
+
+//         console.log("Step 3");
+
+//         const otp = Math.floor(100000 + Math.random() * 900000).toString();
+
+//         console.log("OTP:", otp);
+
+//         await OTP.findOneAndUpdate(
+//             { email },
+//             {
+//                 email,
+//                 otp,
+//                 expiresAt: new Date(Date.now() + 5 * 60 * 1000)
+//             },
+//             {
+//                 upsert: true,
+//                 new: true
+//             }
+//         );
+
+//         console.log("Step 4");
+
+//         const transporter = nodemailer.createTransport({
+//             host: process.env.EMAIL_HOST,
+//             port: Number(process.env.EMAIL_PORT),
+//             secure: false,
+//             auth: {
+//                 user: process.env.EMAIL_USER,
+//                 pass: process.env.EMAIL_PASS
+//             }
+//         });
+
+//         console.log("Step 5");
+
+//         await transporter.sendMail({
+//             from: process.env.EMAIL_FROM,
+//             to: email,
+//             subject: "Login OTP",
+//             html: `<h2>Your OTP is ${otp}</h2>`
+//         });
+
+//         console.log("Step 6 - Email Sent");
+
+//         return res.render("auth/verifyOtp", {
+//             email
+//         });
+
+//     } catch (error) {
+
+//         console.log("ERROR:", error);
+
+//         return res.send(error.message);
+
+//     }
+
+// }
+//     async verifyOTP(req, res) {
+
+//         try {
+
+//             const { email, otp } = req.body;
+
+//             const otpData = await OTP.findOne({ email });
+
+//             if (!otpData) {
+
+//                 req.flash("error_msg", "OTP not found");
+//                 return res.redirect("/login");
+
+//             }
+
+//             if (otpData.expiresAt < Date.now()) {
+
+//                 req.flash("error_msg", "OTP Expired");
+//                 return res.redirect("/login");
+
+//             }
+
+//             if (otpData.otp !== otp) {
+
+//                 return res.render("auth/verifyOtp", {
+//                     email,
+//                     error_msg: "Invalid OTP",
+//                     success_msg: ""
+//                 });
+
+//             }
+
+//             const user = await User.findOne({ email });
+
+//             req.session.user = user;
+
+//             await OTP.deleteOne({ email });
+
+//             if (user.role === "admin") {
+
+//                 return res.redirect("/dashboard");
+
+//             }
+
+//             return res.redirect("/student/dashboard");
+
+//         } catch (error) {
+
+//             req.flash("error_msg", error.message);
+//             return res.redirect("/login");
+
+//         }
+
+//     }
 
     logout(req, res) {
 
